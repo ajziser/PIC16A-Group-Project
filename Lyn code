@@ -1,0 +1,34 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn import tree, preprocessing
+import numpy as np
+url = "https://philchodrow.github.io/PIC16A/datasets/palmer_penguins.csv"
+penguins = pd.read_csv(url)
+
+
+penguins = penguins[["Species","Flipper Length (mm)", "Body Mass (g)", "Sex"]]
+penguins = penguins.dropna()
+penguins = penguins[penguins.Sex != '.']
+np.random.seed(3354354524)
+y = penguins["Species"]
+X = penguins[["Sex","Flipper Length (mm)", "Body Mass (g)"]].copy()
+
+le = preprocessing.LabelEncoder()
+X['Sex'] = le.fit_transform(X['Sex'])
+y = le.fit_transform(y)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+T = tree.DecisionTreeClassifier(max_depth=20) 
+T.fit(X_train, y_train)
+print(T.score(X_train, y_train))
+print(T.score(X_test, y_test))
+
+T = tree.DecisionTreeClassifier(max_depth=3) 
+T.fit(X_train, y_train)
+print(T.score(X_train, y_train))
+print(T.score(X_test, y_test))
+
+fig, ax = plt.subplots(1, figsize = (20, 20))
+p = tree.plot_tree(T, filled = True, feature_names = X.columns)
+
