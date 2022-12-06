@@ -17,11 +17,10 @@ class Project:
         X = penguins[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)']].copy() # X is the feature variable, subset  of the data
         X['Island'] = le.fit_transform(X['Island']) #turns the island names into numbers 0 - 2  
         #return something?
-        
-    def plot_data(self, feature_variable): #compare species w other variable
-        species = self.data['Species']
+       
+    def plot_data(self, first_variable, second_variable): #compare two variables using a scatterplot
         fig,ax = plt.subplots(1, figsize=(8,8))
-        ax.scatter(species, feature_variable)
+        ax.scatter(first_variable, second_variable)
         
         
         
