@@ -18,10 +18,10 @@ class Project:
         X['Island'] = le.fit_transform(X['Island']) #turns the island names into numbers 0 - 2  
         #return something?
         
-    def plot_data(self, feature_variable): #compare species w other variables
-        #exception handling if feature variable is not one we selected
-        
-        fig,ax = plt.subplots(1)
+    def plot_data(self, feature_variable): #compare species w other variable
+        species = self.data['Species']
+        fig,ax = plt.subplots(1, figsize=(8,8))
+        ax.scatter(species, feature_variable)
         
         
         
