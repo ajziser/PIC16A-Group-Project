@@ -1,16 +1,11 @@
 import pandas as pd
-from matplotlib import pyplot as plt
-from sklearn import tree, preprocessing
-import numpy as np
+from CurrentCode import Project, decision_tree
 url = "https://philchodrow.github.io/PIC16A/datasets/palmer_penguins.csv"
 penguins = pd.read_csv(url)
-
-from CurrentCode import Project, decision_tree
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-
 
 project = Project(penguins)
 project.clean_data()
 project.plot_data(penguins['Species'], penguins['Delta 15 N (o/oo)'])
 project.cluster('Body Mass (g)', 'Delta 15 N (o/oo)')
+
+decision_tree(penguins)
