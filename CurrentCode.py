@@ -30,7 +30,7 @@ class Project:
 
         
 
-#outside function -  decision tree 
+# def decision_tree
 '''
 np.random.seed(3354354524)
 y = penguins["Species"]
