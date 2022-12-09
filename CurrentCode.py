@@ -1,3 +1,10 @@
+from matplotlib import pyplot as plt
+from sklearn import tree, preprocessing
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+
+
 class Project:
     def __init__(self, data):
         self.data = data
@@ -7,10 +14,10 @@ class Project:
     
     def clean_data(self):
         #saving the columns we want to work with
-        self.data = penguins[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']] 
-        self.data = penguins.dropna()  # removes all rows with NULL
+        self.data = self.data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']] 
+        self.data = self.data.dropna()  # removes all rows with NULL
         le = preprocessing.LabelEncoder() #make an instance of labelEncoder
-        X = penguins[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)']].copy() # X is the feature variable, subset  of the data
+        X = self.data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)']].copy() # X is the feature variable, subset  of the data
         X['Island'] = le.fit_transform(X['Island']) #turns the island names into numbers 0 - 2  
         #return something?
        
@@ -19,9 +26,9 @@ class Project:
         ax.scatter(first_variable, second_variable)
         
     
-def cluster(self,first_var, second_var):
+    def cluster(self, first_var, second_var):
         #exception handling if variable is not a column we selected, still need to write
-        X = penguins[[first_var, second_var, 'Species']].dropna()
+        X = self.data[[first_var, second_var, 'Species']].dropna()
         fig, ax = plt.subplots(1, figsize=(10,8))
         ax.set(xlabel = first_var,
         ylabel = second_var)
@@ -44,8 +51,6 @@ def decision_tree(data):
     T.fit(X_train, y_train)
     print(T.score(X_test, y_test))
     print(T.score(X_train, y_train))
-    fig, ax = plt.subplots(1, 1, figsize=(10,10))
-    p = tree.plot_tree(T, filled=True, feature_names=X.columns)
 
 
 
