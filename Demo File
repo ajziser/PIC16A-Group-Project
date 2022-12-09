@@ -5,3 +5,8 @@ import numpy as np
 url = "https://philchodrow.github.io/PIC16A/datasets/palmer_penguins.csv"
 penguins = pd.read_csv(url)
 
+from CurrentCode import Project, decision_tree
+
+project = Project(penguins)
+project.clean_data()
+project.plot_data(penguins['Species'], penguins['Delta 15 N (o/oo)'])
