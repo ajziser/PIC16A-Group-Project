@@ -40,7 +40,6 @@ def decision_tree(data):
     y = penguins["Species"]
     X = penguins.drop(["Species"], axis = 1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8)
-    print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
     T = tree.DecisionTreeClassifier(max_depth=2)
     T.fit(X_train, y_train)
     print(T.score(X_test, y_test))
