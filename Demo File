@@ -10,3 +10,4 @@ from CurrentCode import Project, decision_tree
 project = Project(penguins)
 project.clean_data()
 project.plot_data(penguins['Species'], penguins['Delta 15 N (o/oo)'])
+project.cluster('Body Mass (g)', 'Delta 15 N (o/oo)')
