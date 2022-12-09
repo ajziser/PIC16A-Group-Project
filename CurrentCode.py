@@ -18,14 +18,16 @@ class Project:
         fig,ax = plt.subplots(1, figsize=(8,8))
         ax.scatter(first_variable, second_variable)
         
-    def cluster(self, first_var, second_var):
+    
+def cluster(self,first_var, second_var):
         #exception handling if variable is not a column we selected, still need to write
         X = penguins[[first_var, second_var, 'Species']].dropna()
         fig, ax = plt.subplots(1, figsize=(10,8))
+        ax.set(xlabel = first_var,
+        ylabel = second_var)
         for species, df_species in X.groupby('Species'):
             ax.scatter(df_species[first_var], df_species[second_var], label = species) #clusters the variables by species, 3 clusters
-    
-    
+        ax.legend()
         
         
 
