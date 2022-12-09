@@ -20,10 +20,11 @@ class Project:
         
     def cluster(self, first_var, second_var):
         #exception handling if variable is not a column we selected, still need to write
-        X = self.data[[first_var, second_var, 'Species']]
+        X = penguins[[first_var, second_var, 'Species']].dropna()
         fig, ax = plt.subplots(1, figsize=(10,8))
         for species, df_species in X.groupby('Species'):
             ax.scatter(df_species[first_var], df_species[second_var], label = species) #clusters the variables by species, 3 clusters
+    
     
         
         
