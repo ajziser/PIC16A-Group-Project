@@ -30,24 +30,28 @@ class Project:
         
 
         
-
-# def decision_tree
-'''
-np.random.seed(3354354524)
-y = penguins["Species"]
-X = penguins[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)']].copy()
-
-le = preprocessing.LabelEncoder()
-X['Island'] = le.fit_transform(X['Island'])
-y = le.fit_transform(y)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-T = tree.DecisionTreeClassifier(max_depth=3) 
-T.fit(X_train, y_train)
-print(T.score(X_train, y_train))
-print(T.score(X_test, y_test))
-
-'''
+def decision_tree(data):
+    penguins = data[["Species", "Flipper Length (mm)", "Body Mass (g)", "Sex"]]
+    penguins.head()
+    penguins = penguins.dropna()
+    penguins.head()
+    penguins = penguins[penguins["Sex"] != "."]
+    penguins.shape
+    np.random.seed(3354354524)
+    le = preprocessing.LabelEncoder() # makes an instance of labelencoder
+    penguins['Sex'] = le.fit_transform(penguins["Sex"]) # turn 'female' to 0 and 'male' to 1
+    y = penguins["Species"]
+    X = penguins.drop(["Species"], axis = 1)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8)
+    print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+    T = tree.DecisionTreeClassifier(max_depth=3)
+    T.fit(X_train, y_train)
+    print(T.score(X_test, y_test))
+    print(T.score(X_train, y_train))
+    fig, ax = plt.subplots(1, 1, figsize=(10,10))
+    p = tree.plot_tree(T, filled=True, feature_names=X.columns)
+    fig, ax = plt.subplots(1, figsize = (20, 20))
+    p = tree.plot_tree(T, filled = True, feature_names = X.columns)
 
 
 
