@@ -1,7 +1,3 @@
-url = "https://philchodrow.github.io/PIC16A/datasets/palmer_penguins.csv"
-penguins = pd.read_csv(url)
-
-
 class Project:
     def __init__(self, data):
         self.data = data
