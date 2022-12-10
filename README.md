@@ -1,7 +1,7 @@
 # PIC16A Group Project: Clustering Penguins
 Anna Ziser, Lauren Nemeh, Lyndsey Mitsch
 
-This project blah blah blah (short description of project)
+In our project, we explore the penguins dataset and manipulate the data through graphing and training the data with a decision tree model. As a group, we felt like we needed more practice working with datsets and getting more comfortable with manipulating/graphing datasets in a class. We graphed the data via scatterplots and clustering in order to get a better understanding of the relationships between the different variables
 
 Python packages used (and versions):
 
@@ -10,7 +10,3 @@ Detailed description of the demo file. This includes detailed instructions on ho
 Scope and limitations, including ethical implications, accessibility concerns, and ideas for potential extensions.
 
 References and acknowledgement.
-
-(If appropriate) background and source of the dataset.
-
-(If appropriate) links to any tutorials you used, and at least 3 specific things you implemented that differentiates your project from what’s already in the tutorial.
