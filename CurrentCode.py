@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 from sklearn import tree, preprocessing
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -30,14 +31,14 @@ class Project:
         X = self.data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)']].copy() # X is the feature variable, subset  of the data
         X['Island'] = le.fit_transform(X['Island']) #turns the island names into numbers 0 - 2  
         
-    def plot_data(self, first_variable, second_variable):
+    def scatterplot(self, first_variable, second_variable):
         '''Compares variables from two columns in the dataframe using a scatterplot.
         Arguments: first_variable and second_variable: columns of self.data that will be plotted.
         Output: scatter plot with first_variable values on x axis and second_variable values on y axis.
         '''
         fig,ax = plt.subplots(1, figsize=(8,8))
         ax.scatter(self.data[first_variable], self.data[second_variable])
-        ax.set(xlabel=first_variable,ylabel=second_variable)
+        ax.set(xlabel=first_variable,ylabel=second_variable,title='Scatterplot')
         
     def cluster(self, first_var, second_var):
         '''Clusters data according to input.
@@ -49,7 +50,7 @@ class Project:
         try:
             X = self.data[[first_var, second_var, 'Species']].dropna() #?
             ax.set(xlabel = first_var,
-            ylabel = second_var)
+            ylabel = second_var, title = 'Clusters')
             for species, df_species in X.groupby('Species'): 
                 ax.scatter(df_species[first_var], df_species[second_var], label = species) #plots the variables by species, 3 clusters
             ax.legend()   
