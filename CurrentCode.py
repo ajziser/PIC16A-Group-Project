@@ -36,8 +36,9 @@ class Project:
         Arguments: first_variable and second_variable: columns of self.data that will be plotted.
         Output: scatter plot with first_variable values on x axis and second_variable values on y axis.
         '''
-        fig,ax = plt.subplots(1, figsize=(8,8)) #creates plot with size 8x8
-        ax.scatter(first_variable, second_variable) # scatterplot with input variables
+        fig,ax = plt.subplots(1, figsize=(8,8))
+        ax.scatter(self.data[first_variable], self.data[second_variable])
+        ax.set(xlabel=first_variable,ylabel=second_variable)
         
     def cluster(self, first_var, second_var):
         '''Clusters data according to input.
