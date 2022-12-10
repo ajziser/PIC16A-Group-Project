@@ -7,12 +7,13 @@ from sklearn.preprocessing import LabelEncoder
 
 class Project:
     def __init__(self, data):
-        self.data = data
-        
-    
-    # 2 examples of exception handling
-    
+        if type(data) == pd.core.frame.DataFrame:
+            self.data = data #saves data input (penguins data) to class variable self.data
+        else:
+            raise TypeError("Data entered must be a pandas dataframe.") #if input data is not a dataframe, TypeError is raised.
+
     def clean_data(self):
+        '''This function'''
         #saving the columns we want to work with
         self.data = self.data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']] 
         self.data = self.data.dropna()  # removes all rows with NULL
@@ -21,24 +22,33 @@ class Project:
         X['Island'] = le.fit_transform(X['Island']) #turns the island names into numbers 0 - 2  
         #return something?
        
-    def plot_data(self, first_variable, second_variable): #compare two variables using a scatterplot
+    def plot_data(self, first_variable, second_variable):
+        ''' compare two variables using a scatterplot '''
         fig,ax = plt.subplots(1, figsize=(8,8))
         ax.scatter(first_variable, second_variable)
         
-    
     def cluster(self, first_var, second_var):
-        #exception handling if variable is not a column we selected, still need to write
-        X = self.data[[first_var, second_var, 'Species']].dropna()
-        fig, ax = plt.subplots(1, figsize=(10,8))
-        ax.set(xlabel = first_var,
-        ylabel = second_var)
-        for species, df_species in X.groupby('Species'):
-            ax.scatter(df_species[first_var], df_species[second_var], label = species) #clusters the variables by species, 3 clusters
-        ax.legend()
+        '''Clusters data according to input'''
+
+        fig, ax = plt.subplots(1, figsize=(10,8)) #creates one plot of size width 10, and height 8
+        
+        try:
+            X = self.data[[first_var, second_var, 'Species']].dropna()
+            ax.set(xlabel = first_var,
+            ylabel = second_var)
+            for species, df_species in X.groupby('Species'):
+                ax.scatter(df_species[first_var], df_species[second_var], label = species) #clusters the variables by species, 3 clusters
+            ax.legend()   
+            
+        except KeyError:
+            print("Variable input name not found in dataframe") #If KeyError is raised by the try block of code because the input is not in the data, this message is printed.
+        finally:
+            return fig, ax #return the plot created, even if there was a KeyError and nothing was plotted
         
         
 
 def decision_tree(data):
+    '''Docstring'''
     penguins = data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']]
     penguins = penguins.dropna()
     np.random.seed(3354354524)
