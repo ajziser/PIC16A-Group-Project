@@ -11,9 +11,8 @@ class Project:
     
     Input: data-penguins pandas dataframe, saved as self.data
     Methods: clean_data-Cleans the penguins data (self.data) into a smaller subset of 5 columns.
-            plot_data-Compares variables from two columns in the dataframe using a scatterplot.
-            cluster-Clusters data
-    
+            scatterplot-Compares variables from two columns in the dataframe using a scatterplot.
+            cluster-Compares variables from two columns, grouped by species, using a scatterplot.
     '''
     
     def __init__(self, data): #Constructs class object
@@ -36,14 +35,14 @@ class Project:
         Arguments: first_variable and second_variable: columns of self.data that will be plotted.
         Output: scatter plot with first_variable values on x axis and second_variable values on y axis.
         '''
-        fig,ax = plt.subplots(1, figsize=(8,8))
+        fig,ax = plt.subplots(1, figsize=(8,8))  #creates one 8x8 sized plot.
         ax.scatter(self.data[first_variable], self.data[second_variable])
         ax.set(xlabel=first_variable,ylabel=second_variable,title='Scatterplot')
         
     def cluster(self, first_var, second_var):
-        '''Clusters data according to input.
-        Arguments: first_var and second_var: names of columns in self.data to be clustered
-        Output: scatter plot of clustered data
+        '''Plots data by species, according to input.
+        Arguments: first_var and second_var: names of columns in self.data to be plotted.
+        Output: scatter plot of data, colored by species
         '''
         fig, ax = plt.subplots(1, figsize=(10,8)) #creates one plot of size width 10, and height 8
         
