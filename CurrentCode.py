@@ -15,8 +15,7 @@ class Project:
     
     '''
     
-    
-    def __init__(self, data): 
+    def __init__(self, data): #Constructs class object
         if type(data) == pd.core.frame.DataFrame:
             self.data = data #saves data input (penguins data) to class variable self.data
         else:
