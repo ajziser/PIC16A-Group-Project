@@ -62,10 +62,11 @@ class Project:
 
 def decision_tree(data):
     '''Creates a decision tree to predict penguin species from the data.
-    Output: returns score of the train and test data.
+    Output: returns the decision tree's accuracy score on the train and test data.
     '''
-    penguins = data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']]
-    penguins = penguins.dropna()
+    
+    penguins = data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']] #create subset of penguin data to use in tree
+    penguins = penguins.dropna() # drop any NaNs from the data
     
     np.random.seed(3354354524)
     le = preprocessing.LabelEncoder() # makes an instance of labelencoder
