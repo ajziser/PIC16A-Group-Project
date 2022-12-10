@@ -5,7 +5,7 @@ penguins = pd.read_csv(url)
 
 project = Project(penguins)
 project.clean_data()
-project.plot_data('Species', 'Delta 15 N (o/oo)')
+project.scatterplot('Species', 'Delta 15 N (o/oo)')
 project.cluster('Body Mass (g)', 'Delta 15 N (o/oo)')
 
 decision_tree(penguins)
