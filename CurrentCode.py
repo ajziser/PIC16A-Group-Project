@@ -36,8 +36,8 @@ class Project:
         Output: scatter plot with first_variable values on x axis and second_variable values on y axis.
         '''
         fig,ax = plt.subplots(1, figsize=(8,8))  #creates one 8x8 sized plot.
-        ax.scatter(self.data[first_variable], self.data[second_variable])
-        ax.set(xlabel=first_variable,ylabel=second_variable,title='Scatterplot')
+        ax.scatter(self.data[first_variable], self.data[second_variable]) #scatter first and second variable
+        ax.set(xlabel=first_variable,ylabel=second_variable,title='Scatterplot') #sets title and axis labels
         
     def cluster(self, first_var, second_var):
         '''Plots data by species, according to input.
@@ -48,8 +48,8 @@ class Project:
         
         try:
             X = self.data[[first_var, second_var, 'Species']].dropna() #?
-            ax.set(xlabel = first_var,
-            ylabel = second_var, title = 'Clusters')
+            ax.set(xlabel = first_var, 
+            ylabel = second_var, title = 'Clusters') #sets labels for plot
             for species, df_species in X.groupby('Species'): 
                 ax.scatter(df_species[first_var], df_species[second_var], label = species) #plots the variables by species, 3 clusters
             ax.legend()   
@@ -61,19 +61,25 @@ class Project:
         
 
 def decision_tree(data):
-    '''Docstring'''
+    '''Creates a decision tree to predict penguin species from the data.
+    Output: returns score of the train and test data.
+    '''
     penguins = data[['Island', 'Body Mass (g)', 'Delta 15 N (o/oo)', 'Delta 13 C (o/oo)', 'Species']]
     penguins = penguins.dropna()
+    
     np.random.seed(3354354524)
     le = preprocessing.LabelEncoder() # makes an instance of labelencoder
-    penguins['Island'] = le.fit_transform(penguins["Island"]) # turn 'female' to 0 and 'male' to 1
-    y = penguins["Species"]
-    X = penguins.drop(["Species"], axis = 1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8)
-    T = tree.DecisionTreeClassifier(max_depth=2)
-    T.fit(X_train, y_train)
-    print(T.score(X_test, y_test))
-    print(T.score(X_train, y_train))
+    penguins['Island'] = le.fit_transform(penguins["Island"]) # turn island data into integers from 0 to 2
+    
+    y = penguins["Species"] #y/target variable: Penguins species
+    X = penguins.drop(["Species"], axis = 1) #X/Predictor variable: Penguins data without species column
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8) #Splits data into training and test data
+    T = tree.DecisionTreeClassifier(max_depth=2) # Creates decision tree with max depth of 2
+    
+    T.fit(X_train, y_train) #trains decision tree on train data
+    
+    print(T.score(X_train, y_train)) #Tree accuracy score on training data
+    print(T.score(X_test, y_test)) #Tree accuracy score on test data
 
 
 
