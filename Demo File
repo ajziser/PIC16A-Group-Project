@@ -1,7 +1,9 @@
 import pandas as pd
-from CurrentCode import Project, decision_tree
+
 url = "https://philchodrow.github.io/PIC16A/datasets/palmer_penguins.csv"
 penguins = pd.read_csv(url)
+
+from CurrentCode import Project, decision_tree
 
 project = Project(penguins)
 project.clean_data()
