@@ -79,8 +79,8 @@ def decision_tree(data):
     
     T.fit(X_train, y_train) #trains decision tree on train data
     
-    print("Training score: " + T.score(X_train, y_train)) #Tree accuracy score on training data
-    print("Testing score: " + T.score(X_test, y_test)) #Tree accuracy score on test data
+    print("Training score: " + str(T.score(X_train, y_train))) #Tree accuracy score on training data
+    print("Testing score: " + str(T.score(X_test, y_test))) #Tree accuracy score on test data
 
 
 
