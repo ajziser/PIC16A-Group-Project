@@ -11,14 +11,11 @@ Demo description/How to run the demo file:
 3. Rename the .ipynb file to DemoFile and navigate to the Demo File code from github.
 4. Paste and run the first 8 lines of the Demo File into a cell in the .ipynb file to import pandas, read the penguins data, and import the CurrentCode file. There should be no errors or results from running this cell. 
 5. Run line 7 inside the same cell to get a preview of the existing penguins data.  You should see the dataframe like this:
-image here
-
-7. Create a new cell and run lines 11-13 of the Demo File to create a Project class object with the penguins dataframe, and run the clean_data function. Line 12 will show the preview of the cleaned up data, which has fewer columns compared to the original data we saw in the previous step:
-image here
+Screen Shot 2022-12-10 at 4.20.36 PM<img width="1015" alt="image" src="https://user-images.githubusercontent.com/114253056/206880731-6302bed7-125b-42d0-95ac-d9fc7bdb2971.png">
+6. Create a new cell and run lines 11-13 of the Demo File to create a Project class object with the penguins dataframe, and run the clean_data function. Line 12 will show the preview of the cleaned up data, which has fewer columns compared to the original data we saw in the previous step:
 Screen Shot 2022-12-10 at 4.21.06 PM<img width="627" alt="image" src="https://user-images.githubusercontent.com/114253056/206880722-0e26286a-21a6-4583-9619-5d8130e4a0cc.png">
-
-9. 
-
+7. 
+8. 
 
 6. You should see a graph like this:
 7. explanations/interpretations of result
